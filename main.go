@@ -8,16 +8,15 @@ import (
 func main() {
     fmt.Println("hello nigga, its codeium")
 
-
-    vidInfo := models.YtVideo{
-        Url: "https://www.youtube.com/watch?v=lcpAXz0ixuI",
-        Title: "tetepkq",
-        Note: "360p",
-    }
-
-    test,err := models.Downloadyt(vidInfo)
+    test,err := models.GetVideoInfo("https://www.youtube.com/shorts/kcPf7QgnENk")
     if err != nil {
         fmt.Println(err)
     }
-    fmt.Println(test)
+
+    for i,item := range test {
+        fmt.Println(i,item.Quality)
+        if item.Quality == "1080p" {
+            fmt.Println(item.GetDownloadLink())
+        }
+    }
 }
